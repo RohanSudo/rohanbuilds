@@ -53,9 +53,8 @@ export default function About() {
                 where I've built 100+ production automations.
               </p>
               <p>
-                I'm self-taught, not CS-educated. That means I think about the end user
-                first, not the tech stack. I manage complex projects under pressure
-                and deliver on deadline.
+                I think about the end user first, not the tech stack.
+                I manage complex projects under pressure and deliver on deadline.
               </p>
               <p>
                 When I build something, it runs in production. Real payments, real users,
