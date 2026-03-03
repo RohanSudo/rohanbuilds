@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
 
-const navLinks = [
+const homeNavLinks = [
   { label: 'Work', href: '#projects' },
   { label: 'About', href: '#about' },
   { label: 'Contact', href: '#contact' },
@@ -13,19 +14,28 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState('');
   const [pillStyle, setPillStyle] = useState<{ left: number; width: number } | null>(null);
   const navRef = useRef<HTMLDivElement>(null);
+  const location = useLocation();
+  const isHome = location.pathname === '/';
+
+  useEffect(() => {
+    if (!isHome) {
+      setActiveSection('');
+      setPillStyle(null);
+    }
+  }, [isHome]);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
 
-      // If scrolled to bottom of page, last section (contact) is active
+      if (!isHome) return;
+
       const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 50;
       if (atBottom) {
         setActiveSection('contact');
         return;
       }
 
-      // Check sections top-to-bottom, keep the last one whose top has passed the threshold
       const sectionIds = ['projects', 'about', 'contact'];
       let current = '';
       for (const id of sectionIds) {
@@ -41,9 +51,8 @@ export default function Navbar() {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isHome]);
 
-  // Update pill position when active section changes
   useEffect(() => {
     if (!activeSection || !navRef.current) {
       setPillStyle(null);
@@ -79,46 +88,64 @@ export default function Navbar() {
           padding: '12px 24px',
         } : {}}
       >
-        <a
-          href="#"
+        <Link
+          to="/"
           className="text-xl font-bold tracking-tight"
           style={{ fontFamily: "'Space Grotesk', system-ui, sans-serif", color: '#fafafa' }}
         >
           rohan<span style={{ color: '#818cf8' }}>.</span>
-        </a>
+        </Link>
 
         <div className="flex items-center gap-3 sm:gap-6">
-          {/* Section nav with sliding pill */}
-          <div ref={navRef} className="relative flex items-center gap-0.5 sm:gap-1 p-1 rounded-lg" style={{ backgroundColor: 'rgba(24,24,27,0.6)' }}>
-            {/* Sliding pill */}
-            {pillStyle && (
-              <motion.div
-                className="absolute top-1 bottom-1 rounded-md"
-                style={{ backgroundColor: 'rgba(129,140,248,0.15)', border: '1px solid rgba(129,140,248,0.3)' }}
-                animate={{ left: pillStyle.left, width: pillStyle.width }}
-                transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-              />
-            )}
-            {navLinks.map(link => {
-              const sectionId = link.href.replace('#', '');
-              const isActive = activeSection === sectionId;
-              return (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  data-section={sectionId}
-                  className="relative z-10 text-xs sm:text-sm px-2.5 sm:px-4 py-1.5 rounded-md transition-colors duration-200"
-                  style={{ color: isActive ? '#fafafa' : '#71717a' }}
-                  onMouseEnter={e => (e.currentTarget.style.color = '#fafafa')}
-                  onMouseLeave={e => { if (!isActive) e.currentTarget.style.color = '#71717a'; }}
-                >
-                  {link.label}
-                </a>
-              );
-            })}
-          </div>
+          {/* Section nav - only show hash links on home page */}
+          {isHome && (
+            <div ref={navRef} className="relative flex items-center gap-0.5 sm:gap-1 p-1 rounded-lg" style={{ backgroundColor: 'rgba(24,24,27,0.6)' }}>
+              {pillStyle && (
+                <motion.div
+                  className="absolute top-1 bottom-1 rounded-md"
+                  style={{ backgroundColor: 'rgba(129,140,248,0.15)', border: '1px solid rgba(129,140,248,0.3)' }}
+                  animate={{ left: pillStyle.left, width: pillStyle.width }}
+                  transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                />
+              )}
+              {homeNavLinks.map(link => {
+                const sectionId = link.href.replace('#', '');
+                const isActive = activeSection === sectionId;
+                return (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    data-section={sectionId}
+                    className="relative z-10 text-xs sm:text-sm px-2.5 sm:px-4 py-1.5 rounded-md transition-colors duration-200"
+                    style={{ color: isActive ? '#fafafa' : '#71717a' }}
+                    onMouseEnter={e => (e.currentTarget.style.color = '#fafafa')}
+                    onMouseLeave={e => { if (!isActive) e.currentTarget.style.color = '#71717a'; }}
+                  >
+                    {link.label}
+                  </a>
+                );
+              })}
+            </div>
+          )}
 
-          {/* Resume - clearly an external link */}
+          {/* WIP link */}
+          <Link
+            to="/wip"
+            className="text-xs px-3 py-1.5 rounded-md transition-colors duration-200"
+            style={{
+              color: location.pathname.startsWith('/wip') ? '#fafafa' : '#71717a',
+              backgroundColor: location.pathname.startsWith('/wip') ? 'rgba(129,140,248,0.15)' : 'transparent',
+              fontFamily: "'JetBrains Mono', monospace",
+            }}
+            onMouseEnter={e => (e.currentTarget.style.color = '#fafafa')}
+            onMouseLeave={e => {
+              if (!location.pathname.startsWith('/wip')) e.currentTarget.style.color = '#71717a';
+            }}
+          >
+            WIP
+          </Link>
+
+          {/* Resume */}
           <a
             href="/resume.html"
             target="_blank"
