@@ -1,6 +1,7 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from './useInView';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, Play, X } from 'lucide-react';
 
 interface Project {
   title: string;
@@ -10,15 +11,25 @@ interface Project {
   metrics: string[];
   featured?: boolean;
   link?: string;
+  videoId?: string;
 }
 
 const projects: Project[] = [
   {
+    title: 'CaseDrop',
+    tagline: 'AI-powered case intake for personal injury law firms',
+    description: 'Upload a police report, AI extracts all case data (GPT-4o Vision), human reviews and approves, system creates the case in Clio Manage, generates a retainer agreement, and sends it for signature. Built the working prototype in 72 hours during the Swans Applied AI Hackathon.',
+    tech: ['n8n', 'OpenAI GPT-4o', 'Clio API', 'Supabase', 'React'],
+    metrics: ['24-node pipeline', 'AI extraction', '5 min vs 2 hours'],
+    featured: true,
+    videoId: '1q5hCpti7BE',
+  },
+  {
     title: 'LastSend',
-    tagline: 'Your words, delivered when they matter most',
-    description: 'Mobile app where users compose messages, photos, videos, and voice recordings to be delivered to loved ones after they pass. 40+ n8n workflows handling payments, media processing, push notifications, check-in verification, and delivery triggers. Integrated PayPal, Google Play Billing, Razorpay, Cloudflare R2, Firebase FCM.',
+    tagline: 'Full production app with zero traditional backend',
+    description: 'Entire backend runs on n8n. 30+ workflows handle payment processing (PayPal, Google Play Billing, Razorpay), media uploads to Cloudflare R2, push notifications via Firebase FCM, check-in verification, deceased account processing, and message delivery triggers. Live on Google Play with paying users.',
     tech: ['n8n', 'React', 'Capacitor', 'Supabase', 'Docker', 'Hetzner'],
-    metrics: ['40+ workflows', '6 payment integrations', 'Queue mode'],
+    metrics: ['30+ workflows', '6 payment integrations', 'Queue mode'],
     featured: true,
     link: 'https://lastsend.app',
   },
@@ -52,8 +63,43 @@ const projects: Project[] = [
   },
 ];
 
+function VideoModal({ videoId, onClose }: { videoId: string; onClose: () => void }) {
+  return (
+    <div
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+      style={{ backgroundColor: 'rgba(0,0,0,0.85)' }}
+      onClick={onClose}
+    >
+      <button
+        onClick={onClose}
+        className="absolute top-6 right-6 p-2 rounded-full transition-colors duration-200"
+        style={{ color: '#a1a1aa', backgroundColor: 'rgba(39,39,42,0.8)' }}
+        onMouseEnter={e => (e.currentTarget.style.color = '#fafafa')}
+        onMouseLeave={e => (e.currentTarget.style.color = '#a1a1aa')}
+      >
+        <X size={24} />
+      </button>
+      <div
+        className="w-full max-w-4xl aspect-video rounded-xl overflow-hidden"
+        onClick={e => e.stopPropagation()}
+      >
+        <iframe
+          width="100%"
+          height="100%"
+          src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
+          title="Project walkthrough"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      </div>
+    </div>
+  );
+}
+
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   const [ref, isInView] = useInView(0.1);
+  const [showVideo, setShowVideo] = useState(false);
 
   const cardContent = (
     <>
@@ -77,6 +123,24 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       <p className="text-sm leading-relaxed mb-6 flex-grow" style={{ color: '#a1a1aa' }}>
         {project.description}
       </p>
+
+      {/* Video button */}
+      {project.videoId && (
+        <button
+          onClick={e => { e.preventDefault(); e.stopPropagation(); setShowVideo(true); }}
+          className="inline-flex items-center gap-2 text-xs font-medium px-4 py-2 rounded-lg mb-5 transition-all duration-200"
+          style={{
+            color: '#818cf8',
+            backgroundColor: 'rgba(129,140,248,0.1)',
+            border: '1px solid rgba(129,140,248,0.25)',
+          }}
+          onMouseEnter={e => { e.currentTarget.style.backgroundColor = 'rgba(129,140,248,0.2)'; }}
+          onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'rgba(129,140,248,0.1)'; }}
+        >
+          <Play size={14} fill="#818cf8" />
+          Watch walkthrough
+        </button>
+      )}
 
       {/* Metrics */}
       <div className="flex flex-wrap gap-x-4 gap-y-1 mb-5">
@@ -107,35 +171,38 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
     border: '1px solid rgba(129,140,248,0.25)',
   } : {};
 
-  if (project.link) {
-    return (
-      <motion.a
-        ref={ref}
-        href={project.link}
-        target="_blank"
-        rel="noopener noreferrer"
-        initial={{ opacity: 0, y: 30 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ delay: index * 0.1, duration: 0.5 }}
-        className={`card p-8 flex flex-col ${project.featured ? 'md:col-span-2 featured-card' : ''}`}
-        style={featuredStyle}
-      >
-        {cardContent}
-      </motion.a>
-    );
-  }
-
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ delay: index * 0.1, duration: 0.5 }}
-      className={`card p-8 flex flex-col ${project.featured ? 'md:col-span-2 featured-card' : ''}`}
-      style={featuredStyle}
-    >
-      {cardContent}
-    </motion.div>
+    <>
+      {showVideo && project.videoId && (
+        <VideoModal videoId={project.videoId} onClose={() => setShowVideo(false)} />
+      )}
+      {project.link ? (
+        <motion.a
+          ref={ref}
+          href={project.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: index * 0.1, duration: 0.5 }}
+          className={`card p-8 flex flex-col ${project.featured ? 'md:col-span-2 featured-card' : ''}`}
+          style={featuredStyle}
+        >
+          {cardContent}
+        </motion.a>
+      ) : (
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: index * 0.1, duration: 0.5 }}
+          className={`card p-8 flex flex-col ${project.featured ? 'md:col-span-2 featured-card' : ''}`}
+          style={featuredStyle}
+        >
+          {cardContent}
+        </motion.div>
+      )}
+    </>
   );
 }
 

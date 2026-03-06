@@ -3,12 +3,12 @@ import { useInView } from './useInView';
 
 const stats = [
   { number: '100+', label: 'Production Workflows', description: 'n8n automations running 24/7', highlight: false },
-  { number: '10+', label: 'API Integrations', description: 'PayPal, Twilio, Gemini, Supabase & more', highlight: false },
+  { number: '10+', label: 'API Integrations', description: 'PayPal, Clio, Twilio, OpenAI, Supabase & more', highlight: false },
   { number: '2', label: 'Apps Shipped', description: 'LastSend and Orbit, live in production', highlight: true },
-  { number: '3', label: 'Client Projects', description: 'Turquaz, Suzuki, financial advisor', highlight: false },
+  { number: '4+', label: 'Client Projects', description: 'Legal tech, restaurants, dealerships, agencies', highlight: false },
 ];
 
-const tools = ['n8n', 'Supabase', 'React', 'Docker', 'Cloudflare', 'GitHub Actions', 'Airtable', 'Redis', 'Caddy', 'Claude'];
+const tools = ['n8n', 'Supabase', 'React', 'OpenAI', 'Docker', 'Cloudflare', 'GitHub Actions', 'Airtable', 'Clio API', 'Caddy'];
 
 export default function Stats() {
   const [ref, isInView] = useInView(0.1);

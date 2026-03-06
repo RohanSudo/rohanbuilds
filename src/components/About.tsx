@@ -12,6 +12,7 @@ const journey: JourneyItem[] = [
   { year: '2024', label: 'Discovered n8n, built first automation workflows' },
   { year: '2025', label: 'Built ', link: { text: 'LastSend', href: 'https://lastsend.app' } },
   { year: '2025', label: 'Orbit client portal + Suzuki dealership automation' },
+  { year: '2026', label: 'Swans AI Hackathon: built CaseDrop (legal tech) in 72 hours' },
   { year: 'Now', label: '100+ production workflows, building for businesses' },
 ];
 
