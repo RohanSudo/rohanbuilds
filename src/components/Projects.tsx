@@ -12,9 +12,23 @@ interface Project {
   featured?: boolean;
   link?: string;
   videoId?: string;
+  images?: string[];
 }
 
 const projects: Project[] = [
+  {
+    title: 'VendorIQ',
+    tagline: '6-agent AI system for vendor due diligence',
+    description: 'Upload a vendor contract to Slack, and 6 AI agents analyze it automatically. The orchestrator (Claude Sonnet) coordinates document analysis, vendor research with web search, compliance checking, risk scoring, and action agents. Human approves or rejects, then decisions post to Slack and log to Airtable. Built for the Airia AI Agents Hackathon.',
+    tech: ['Airia', 'Claude Sonnet', 'Claude Haiku', 'Slack', 'Airtable'],
+    metrics: ['6 AI agents', 'Human-in-the-loop', 'Truly agentic'],
+    featured: true,
+    images: [
+      '/projects/vendoriq/slack-analysis.png',
+      '/projects/vendoriq/orchestrator.png',
+      '/projects/vendoriq/executions.png',
+    ],
+  },
   {
     title: 'CaseDrop',
     tagline: 'AI-powered case intake for personal injury law firms',
@@ -26,12 +40,20 @@ const projects: Project[] = [
   },
   {
     title: 'LastSend',
-    tagline: 'Full production app with zero traditional backend',
-    description: 'Entire backend runs on n8n. 30+ workflows handle payment processing (PayPal, Google Play Billing, Razorpay), media uploads to Cloudflare R2, push notifications via Firebase FCM, check-in verification, deceased account processing, and message delivery triggers. Live on Google Play with paying users.',
+    tagline: 'Full production app, concept to Google Play in 6 weeks',
+    description: 'Entire backend runs on n8n. 40+ workflows handle payment processing (Google Play Billing, Dodo Payments), media uploads to Cloudflare R2, push notifications via Firebase FCM, check-in verification, deceased account processing, and message delivery triggers. Live on Google Play with paying users.',
     tech: ['n8n', 'React', 'Capacitor', 'Supabase', 'Docker', 'Hetzner'],
-    metrics: ['30+ workflows', '6 payment integrations', 'Queue mode'],
+    metrics: ['40+ workflows', 'Queue mode', 'Live on Google Play'],
     featured: true,
     link: 'https://lastsend.app',
+  },
+  {
+    title: 'Hire Rohan Bot',
+    tagline: 'RAG chatbot that answers questions about me',
+    description: 'Recruiters and employers ask questions, and the bot answers using retrieval-augmented generation. Supabase pgvector for vector search with Gemini embeddings (3072 dimensions), Gemini Flash for responses, conversation history and automated cleanup.',
+    tech: ['n8n', 'Supabase pgvector', 'Gemini', 'React'],
+    metrics: ['5 workflows', 'RAG pipeline', 'Vector search'],
+    link: 'https://hire.rohanbuilds.com',
   },
   {
     title: 'Orbit',
@@ -41,25 +63,18 @@ const projects: Project[] = [
     metrics: ['Built in 2 days', 'Multi-currency', 'Wallet system'],
   },
   {
-    title: 'Suzuki Dealership',
-    tagline: 'WhatsApp automation for vehicle sales',
-    description: 'Automated WhatsApp messaging for a Suzuki dealership. Daily workflow reads sales register, filters new invoices, sends personalized welcome messages with service reminders. Rate limiting and duplicate prevention built in.',
-    tech: ['n8n', 'Evolution API', 'Google Sheets', 'WhatsApp'],
-    metrics: ['Daily auto-send', 'Duplicate prevention', 'Rate limited'],
-  },
-  {
     title: 'Turquaz Restaurant',
-    tagline: 'WhatsApp + SMS automation',
-    description: 'Complete customer communication system for hospitality: reservations, review collection, promotional campaigns with Twilio SMS.',
-    tech: ['n8n', 'Twilio', 'WhatsApp API', 'Airtable'],
-    metrics: ['Auto reservations', 'Review pipeline', 'SMS campaigns'],
+    tagline: 'Two-way SMS automation for Canadian restaurant',
+    description: 'Complete waitlist system: QR code intake, Airtable state machine, Twilio two-way SMS with conversation threading, staff reply interface, and automated reminders.',
+    tech: ['n8n', 'Twilio', 'Airtable', 'Google Forms'],
+    metrics: ['Two-way SMS', 'State machine', 'Auto reminders'],
   },
   {
     title: 'AI Sales Agent',
-    tagline: 'Intelligent lead qualification',
-    description: 'Conversational AI agent that qualifies inbound leads, asks discovery questions, and routes to human reps. 32-node n8n workflow.',
-    tech: ['n8n', 'Gemini AI', 'Webhook', 'Supabase'],
-    metrics: ['32 nodes', 'Auto-qualification', 'Smart routing'],
+    tagline: 'Multi-phase automated sales outreach',
+    description: '31-node n8n workflow. Pulls leads from Google Sheets, runs them through three Gemini LLM follow-up phases generating personalized emails, sends via Gmail, and handles Cal.com bookings with a no-show handler.',
+    tech: ['n8n', 'Gemini AI', 'Gmail', 'Cal.com'],
+    metrics: ['31 nodes', '3 LLM phases', 'Auto follow-up'],
   },
 ];
 
@@ -100,6 +115,7 @@ function VideoModal({ videoId, onClose }: { videoId: string; onClose: () => void
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   const [ref, isInView] = useInView(0.1);
   const [showVideo, setShowVideo] = useState(false);
+  const [activeImage, setActiveImage] = useState(0);
 
   const cardContent = (
     <>
@@ -118,6 +134,41 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         </div>
         <p className="text-sm" style={{ color: '#71717a' }}>{project.tagline}</p>
       </div>
+
+      {/* Image gallery */}
+      {project.images && project.images.length > 0 && (
+        <div className="mb-5">
+          <div className="rounded-lg overflow-hidden border cursor-pointer" style={{ borderColor: '#27272a' }}
+            onClick={e => { e.preventDefault(); e.stopPropagation(); setActiveImage((activeImage + 1) % project.images!.length); }}
+          >
+            <img
+              src={project.images[activeImage]}
+              alt={`${project.title} screenshot ${activeImage + 1}`}
+              className="w-full"
+              style={{ objectFit: 'contain', backgroundColor: '#09090b' }}
+            />
+          </div>
+          {project.images.length > 1 && (
+            <div className="flex items-center gap-2 mt-3">
+              {project.images.map((img, i) => (
+                <button
+                  key={i}
+                  onClick={e => { e.preventDefault(); e.stopPropagation(); setActiveImage(i); }}
+                  className="rounded overflow-hidden border-2 transition-all"
+                  style={{
+                    borderColor: i === activeImage ? '#818cf8' : '#27272a',
+                    opacity: i === activeImage ? 1 : 0.5,
+                    width: '60px',
+                    height: '36px',
+                  }}
+                >
+                  <img src={img} alt="" className="w-full h-full" style={{ objectFit: 'cover' }} />
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Description */}
       <p className="text-sm leading-relaxed mb-6 flex-grow" style={{ color: '#a1a1aa' }}>

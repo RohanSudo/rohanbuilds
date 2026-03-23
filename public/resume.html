@@ -437,7 +437,7 @@
       <h3>Contact</h3>
       <div class="contact-item">
         <span class="contact-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></span>
-        Bangalore, India (Remote)
+        Hubli, India (Remote)
       </div>
       <div class="contact-item">
         <span class="contact-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></span>
@@ -494,7 +494,7 @@
     <div>
       <h3>Integrations Built</h3>
       <div class="integration-list">
-        Google Play Billing · PayPal · Razorpay · Twilio SMS · Firebase FCM · Cloudflare R2 · Clio API · Reddit API · Airtable · Google Sheets
+        Google Play Billing · Dodo Payments · Razorpay · Twilio SMS · Firebase FCM · Cloudflare R2 · Claude API · Gemini API · Slack · Airtable · Cal.com
       </div>
     </div>
 
@@ -514,7 +514,7 @@
   <main class="main">
     <div class="header">
       <h1>Rohan Kumar</h1>
-      <div class="title">Automation & AI Implementation Specialist</div>
+      <div class="title">Systems Designer & Automation Specialist</div>
     </div>
 
     <!-- METRICS -->
@@ -539,12 +539,26 @@
 
     <!-- SUMMARY -->
     <div class="summary">
-      Self-taught automation specialist who ships. Built and manages <strong>60+ production workflows</strong> handling payments, notifications, and AI processing for clients across restaurants, automotive, and legal tech. <strong>Shipped a SaaS app from concept to Google Play in 6 weeks.</strong> Connects systems, automates manual processes, and builds AI-powered pipelines that handle real data for real businesses.
+      Systems designer who ships. Built and manages <strong>65 production workflows</strong> handling payments, notifications, and AI processing. <strong>Shipped a SaaS app from concept to Google Play in 6 weeks.</strong> Built a <strong>6-agent AI system</strong> for vendor due diligence and a <strong>RAG chatbot</strong> with vector search. Designs automated systems that handle real money for real businesses.
     </div>
 
     <!-- PROJECTS -->
     <div class="section">
       <div class="section-title">What I've Built</div>
+
+      <!-- VENDORIQ -->
+      <div class="project-hero">
+        <div class="project-header">
+          <div class="project-name">VendorIQ - Multi-Agent AI System <span class="hero-badge">Agentic AI</span></div>
+          <div class="project-date">Mar 2026</div>
+        </div>
+        <div class="project-subtitle">Airia AI Agents Hackathon · 6 AI agents · Vendor due diligence pipeline with human approval</div>
+        <ul>
+          <li><strong>Orchestrator (Claude Sonnet)</strong> coordinates 5 sub-agents: document analysis, vendor research with web search, compliance check (10-point), risk scoring, and action agent (Slack + Airtable)</li>
+          <li><strong>Truly agentic</strong>: orchestrator decides agent routing based on contract content, human-in-the-loop approval before action</li>
+          <li>Deployed as <strong>Slack bot</strong>: DM a contract PDF, get complete analysis with one-click approve/reject</li>
+        </ul>
+      </div>
 
       <!-- CASEDROP -->
       <div class="project-hero">
@@ -569,7 +583,7 @@
         <div class="project-subtitle">Full app live on Google Play · 40+ n8n workflows powering the backend · Concept to launch in 6 weeks</div>
         <ul>
           <li>Architected <strong>entire backend in n8n</strong>: media processing (ffmpeg/sharp), subscription management, push notifications, trusted contact verification, escalation, deceased account cleanup</li>
-          <li><strong>Payment infrastructure</strong>: Google Play Billing with deferred cancel/downgrade, PayPal subscription lifecycle, Dodo Payments (web)</li>
+          <li><strong>Payment infrastructure</strong>: Google Play Billing with deferred cancel/downgrade, Dodo Payments for web subscriptions</li>
           <li><strong>n8n Queue Mode</strong> on Hetzner VPS: PostgreSQL + Redis + Main + Worker containers, Caddy, Cloudflare R2, GitHub Actions CI/CD</li>
         </ul>
       </div>
@@ -584,8 +598,6 @@
         <ul>
           <li><strong>Restaurant Waitlist</strong> (Canada) - QR to Airtable to Twilio SMS. State machine, two-way messaging, staff reply interface</li>
           <li><strong>AI Sales Agent</strong> - n8n + Gemini API for auto dealership. Inbound qualification, human handoff</li>
-          <li><strong>Financial Email Parser</strong> - Multi-bank transaction data extraction into structured records</li>
-          <li><strong>AI Content Research</strong> - Reddit scraping (7 subs), Gemini analysis, monetization scoring, Airtable dashboard</li>
         </ul>
       </div>
     </div>
