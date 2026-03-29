@@ -4,7 +4,7 @@ import { useInView } from './useInView';
 const stats = [
   { number: '65', label: 'Production Workflows', description: 'n8n automations running 24/7', highlight: false },
   { number: '12+', label: 'API Integrations', description: 'Google Play, Dodo, Twilio, Gemini, Claude & more', highlight: false },
-  { number: '3', label: 'Products Shipped', description: 'LastSend, VendorIQ, Hire Bot', highlight: true },
+  { number: '3', label: 'Products Shipped', description: 'LastSend, VendorIQ, CaseDrop', highlight: true },
   { number: '3+', label: 'Client Projects', description: 'Restaurants, dealerships, portals', highlight: false },
 ];
 

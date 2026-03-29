@@ -32,28 +32,19 @@ const projects: Project[] = [
   {
     title: 'CaseDrop',
     tagline: 'AI-powered case intake for personal injury law firms',
-    description: 'Upload a police report, AI extracts all case data (GPT-4o Vision), human reviews and approves, system creates the case in Clio Manage, generates a retainer agreement, and sends it for signature. Built the working prototype in 72 hours during the Swans Applied AI Hackathon.',
+    description: 'Upload a police report, AI extracts all case data (GPT-4o Vision), human reviews and approves, system creates the case in Clio Manage, generates a retainer agreement, and sends it for signature. Built the working prototype in 72 hours during the Swans Applied AI Hackathon. Placed in the top 25.',
     tech: ['n8n', 'OpenAI GPT-4o', 'Clio API', 'Supabase', 'React'],
-    metrics: ['24-node pipeline', 'AI extraction', '5 min vs 2 hours'],
+    metrics: ['24-node pipeline', 'AI extraction', 'Top 25 - Swans Hackathon'],
     featured: true,
-    videoId: '1q5hCpti7BE',
   },
   {
     title: 'LastSend',
     tagline: 'Full production app, concept to Google Play in 6 weeks',
-    description: 'Entire backend runs on n8n. 40+ workflows handle payment processing (Google Play Billing, Dodo Payments), media uploads to Cloudflare R2, push notifications via Firebase FCM, check-in verification, deceased account processing, and message delivery triggers. Live on Google Play with paying users.',
+    description: 'Entire backend runs on n8n. 40+ workflows handle payment processing (Google Play Billing, Dodo Payments), media uploads to Cloudflare R2, push notifications via Firebase FCM, check-in verification, deceased account processing, and message delivery triggers. Live on Google Play.',
     tech: ['n8n', 'React', 'Capacitor', 'Supabase', 'Docker', 'Hetzner'],
     metrics: ['40+ workflows', 'Queue mode', 'Live on Google Play'],
     featured: true,
     link: 'https://lastsend.app',
-  },
-  {
-    title: 'Hire Rohan Bot',
-    tagline: 'RAG chatbot that answers questions about me',
-    description: 'Recruiters and employers ask questions, and the bot answers using retrieval-augmented generation. Supabase pgvector for vector search with Gemini embeddings (3072 dimensions), Gemini Flash for responses, conversation history and automated cleanup.',
-    tech: ['n8n', 'Supabase pgvector', 'Gemini', 'React'],
-    metrics: ['5 workflows', 'RAG pipeline', 'Vector search'],
-    link: 'https://hire.rohanbuilds.com',
   },
   {
     title: 'Orbit',
@@ -68,13 +59,6 @@ const projects: Project[] = [
     description: 'Complete waitlist system: QR code intake, Airtable state machine, Twilio two-way SMS with conversation threading, staff reply interface, and automated reminders.',
     tech: ['n8n', 'Twilio', 'Airtable', 'Google Forms'],
     metrics: ['Two-way SMS', 'State machine', 'Auto reminders'],
-  },
-  {
-    title: 'AI Sales Agent',
-    tagline: 'Multi-phase automated sales outreach',
-    description: '31-node n8n workflow. Pulls leads from Google Sheets, runs them through three Gemini LLM follow-up phases generating personalized emails, sends via Gmail, and handles Cal.com bookings with a no-show handler.',
-    tech: ['n8n', 'Gemini AI', 'Gmail', 'Cal.com'],
-    metrics: ['31 nodes', '3 LLM phases', 'Auto follow-up'],
   },
 ];
 
