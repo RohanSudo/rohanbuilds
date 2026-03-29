@@ -13,6 +13,7 @@ interface Project {
   link?: string;
   videoId?: string;
   images?: string[];
+  badge?: string;
 }
 
 const projects: Project[] = [
@@ -32,10 +33,11 @@ const projects: Project[] = [
   {
     title: 'CaseDrop',
     tagline: 'AI-powered case intake for personal injury law firms',
-    description: 'Upload a police report, AI extracts all case data (GPT-4o Vision), human reviews and approves, system creates the case in Clio Manage, generates a retainer agreement, and sends it for signature. Built the working prototype in 72 hours during the Swans Applied AI Hackathon. Placed in the top 25.',
+    description: 'Upload a police report, AI extracts all case data (GPT-4o Vision), human reviews and approves, system creates the case in Clio Manage, generates a retainer agreement, and sends it for signature. Built the working prototype in 72 hours during the Swans Applied AI Hackathon.',
     tech: ['n8n', 'OpenAI GPT-4o', 'Clio API', 'Supabase', 'React'],
-    metrics: ['24-node pipeline', 'AI extraction', 'Top 25 - Swans Hackathon'],
+    metrics: ['24-node pipeline', 'AI extraction', 'Built in 72 hours'],
     featured: true,
+    badge: 'Top 25 - Swans Hackathon',
   },
   {
     title: 'LastSend',
@@ -114,6 +116,19 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           </h3>
           {project.link && (
             <ExternalLink size={16} style={{ color: '#71717a' }} />
+          )}
+          {project.badge && (
+            <span
+              className="inline-flex items-center gap-1.5 text-[10px] font-bold tracking-wider uppercase px-3 py-1 rounded-full"
+              style={{
+                color: '#fbbf24',
+                backgroundColor: 'rgba(251,191,36,0.1)',
+                border: '1px solid rgba(251,191,36,0.3)',
+                fontFamily: "'JetBrains Mono', monospace",
+              }}
+            >
+              ★ {project.badge}
+            </span>
           )}
         </div>
         <p className="text-sm" style={{ color: '#71717a' }}>{project.tagline}</p>

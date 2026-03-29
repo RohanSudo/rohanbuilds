@@ -11,9 +11,9 @@ const journey: JourneyItem[] = [
   { year: '2023', label: 'Full Stack Open + The Odin Project' },
   { year: '2024', label: 'Discovered n8n, built first automation workflows' },
   { year: '2025', label: 'Built ', link: { text: 'LastSend', href: 'https://lastsend.app' } },
-  { year: '2025', label: 'Orbit client portal + Suzuki dealership automation' },
-  { year: '2026', label: 'Swans AI Hackathon: built CaseDrop (legal tech) in 72 hours' },
-  { year: 'Now', label: '100+ production workflows, building for businesses' },
+  { year: '2025', label: 'Orbit client portal, restaurant automation, dealership bot' },
+  { year: '2026', label: 'Swans Hackathon (Top 25), Airia Hackathon, multi-agent AI systems' },
+  { year: 'Now', label: 'Building AI systems and shipping products' },
 ];
 
 export default function About() {
@@ -50,8 +50,8 @@ export default function About() {
             <div className="space-y-6 text-base leading-relaxed" style={{ color: '#a1a1aa' }}>
               <p>
                 I don't write code line by line. I architect systems, design business logic,
-                and build workflows that replace manual processes. My tool of choice is n8n,
-                where I've built 100+ production automations.
+                and build the automation infrastructure that replaces manual work. I think in
+                workflows, data flows, and edge cases.
               </p>
               <p>
                 I think about the end user first, not the tech stack.
@@ -59,8 +59,8 @@ export default function About() {
               </p>
               <p>
                 When I build something, it runs in production. Real payments, real users,
-                real data. PayPal, Google Play, Razorpay, Twilio, Gemini - not tutorials,
-                but apps people actually use.
+                real data. Google Play Billing, Razorpay, Twilio, Gemini, Supabase. Not tutorials,
+                but systems people actually depend on.
               </p>
             </div>
           </motion.div>

@@ -61,8 +61,8 @@ export default function Hero() {
           className="max-w-xl text-lg leading-relaxed mb-12"
           style={{ color: '#a1a1aa' }}
         >
-          n8n automation specialist who turns manual business processes into
-          self-running workflows. 100+ production automations. Two apps shipped.
+          Systems designer who builds production AI systems, automation
+          infrastructure, and full-stack products. If it can be automated, I've probably already built it.
         </motion.p>
 
         {/* Buttons */}
