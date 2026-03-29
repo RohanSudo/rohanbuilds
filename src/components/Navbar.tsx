@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ExternalLink } from 'lucide-react';
 
 const homeNavLinks = [
   { label: 'Work', href: '#projects' },
@@ -128,36 +127,7 @@ export default function Navbar() {
             </div>
           )}
 
-          {/* WIP link */}
-          <Link
-            to="/wip"
-            className="text-xs px-3 py-1.5 rounded-md transition-colors duration-200"
-            style={{
-              color: location.pathname.startsWith('/wip') ? '#fafafa' : '#71717a',
-              backgroundColor: location.pathname.startsWith('/wip') ? 'rgba(129,140,248,0.15)' : 'transparent',
-              fontFamily: "'JetBrains Mono', monospace",
-            }}
-            onMouseEnter={e => (e.currentTarget.style.color = '#fafafa')}
-            onMouseLeave={e => {
-              if (!location.pathname.startsWith('/wip')) e.currentTarget.style.color = '#71717a';
-            }}
-          >
-            WIP
-          </Link>
-
-          {/* Resume */}
-          <a
-            href="/resume.html"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden sm:flex items-center gap-1.5 text-xs transition-colors duration-200"
-            style={{ color: '#71717a', fontFamily: "'JetBrains Mono', monospace" }}
-            onMouseEnter={e => (e.currentTarget.style.color = '#a1a1aa')}
-            onMouseLeave={e => (e.currentTarget.style.color = '#71717a')}
-          >
-            Resume
-            <ExternalLink size={12} />
-          </a>
+          {/* WIP and Resume links hidden from nav - still accessible via direct URL */}
         </div>
       </div>
     </motion.nav>
