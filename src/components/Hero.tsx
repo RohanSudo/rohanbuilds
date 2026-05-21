@@ -17,7 +17,7 @@ export default function Hero() {
         />
       </div>
 
-      <div className="relative max-w-4xl mx-auto w-full px-8 md:px-12 pt-40 pb-24">
+      <div className="relative max-w-5xl mx-auto w-full px-6 sm:px-8 md:px-12 pt-40 pb-24">
         {/* Status */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -35,7 +35,7 @@ export default function Hero() {
             }}
           >
             <span className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: '#34d399' }} />
-            Available for work
+            Applied AI Engineer
           </span>
         </motion.div>
 
@@ -44,13 +44,12 @@ export default function Hero() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="font-bold leading-[1] tracking-[-0.04em] mb-8"
-          style={{ fontFamily: "'Space Grotesk', system-ui, sans-serif", fontSize: 'clamp(2.8rem, 7vw, 5.5rem)' }}
+          className="max-w-4xl text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.03] mb-8"
+          style={{ fontFamily: "'Space Grotesk', system-ui, sans-serif" }}
         >
-          <span style={{ color: '#fafafa' }}>I build </span>
-          <span style={{ color: '#818cf8' }}>systems</span>
-          <br />
-          <span style={{ color: '#fafafa' }}>that run without me.</span>
+          <span style={{ color: '#fafafa' }}>I apply </span>
+          <span style={{ color: '#818cf8' }}>AI</span>
+          <span style={{ color: '#fafafa' }}> to ship practical systems.</span>
         </motion.h1>
 
         {/* Subtitle */}
@@ -61,8 +60,9 @@ export default function Hero() {
           className="max-w-xl text-lg leading-relaxed mb-12"
           style={{ color: '#a1a1aa' }}
         >
-          Systems designer who builds production AI systems, automation
-          infrastructure, and full-stack products. If it can be automated, I've probably already built it.
+          I use AI, n8n, and LLM tooling to design products, automations,
+          and workflows like ClipShip and LastSend. Practical systems that
+          handle payments, media, APIs, and real users.
         </motion.p>
 
         {/* Buttons */}

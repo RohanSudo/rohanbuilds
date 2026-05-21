@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rohan Kumar - Automation & AI Implementation Specialist</title>
+<title>Rohan Kumar - Applied AI Engineer</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
 
@@ -473,16 +473,23 @@
       <div class="skill-category">
         <div class="skill-category-title">AI & Agents</div>
         <div class="skill-tags">
-          <span class="skill-tag">AI Agent Design</span>
-          <span class="skill-tag">GPT-4o Vision</span>
+          <span class="skill-tag highlight">Multi-Agent Systems</span>
+          <span class="skill-tag">RAG Pipelines</span>
+          <span class="skill-tag">Local AI Pipelines</span>
           <span class="skill-tag">Gemini API</span>
           <span class="skill-tag">OpenAI API</span>
+          <span class="skill-tag">Vector Search</span>
+          <span class="skill-tag highlight">Python</span>
+          <span class="skill-tag">LangGraph</span>
+          <span class="skill-tag">LangChain</span>
+          <span class="skill-tag">FastAPI</span>
         </div>
       </div>
       <div class="skill-category">
         <div class="skill-category-title">Platforms & Infra</div>
         <div class="skill-tags">
           <span class="skill-tag">System Architecture</span>
+          <span class="skill-tag">Tauri</span>
           <span class="skill-tag">Supabase</span>
           <span class="skill-tag">Docker</span>
           <span class="skill-tag">CI/CD</span>
@@ -501,7 +508,7 @@
     <div>
       <h3>Education</h3>
       <div class="edu-section">
-        <div class="edu-formal">BFA, Film Editing & Direction<br>Annapurna College, Hyderabad (2015-2019)</div>
+        <div class="edu-formal">Harvard CS50: Introduction to Computer Science (In Progress)</div>
         <div class="edu-tech">Self-Directed Technical Learning</div>
         <div class="edu-tech-detail">
           The Odin Project (Web Dev) · Fullstack Open (React) · Continuous learning through shipping production systems
@@ -514,14 +521,14 @@
   <main class="main">
     <div class="header">
       <h1>Rohan Kumar</h1>
-      <div class="title">Systems Designer & Automation Specialist</div>
+      <div class="title">Applied AI Engineer</div>
     </div>
 
     <!-- METRICS -->
     <div class="metrics-bar">
       <div class="metric hero-metric">
-        <div class="metric-num">SaaS</div>
-        <div class="metric-label">Live on Google Play</div>
+        <div class="metric-num">2</div>
+        <div class="metric-label">Shipped Products</div>
       </div>
       <div class="metric">
         <div class="metric-num">6wk</div>
@@ -532,31 +539,45 @@
         <div class="metric-label">Production Workflows</div>
       </div>
       <div class="metric">
-        <div class="metric-num">10+</div>
+        <div class="metric-num">15+</div>
         <div class="metric-label">API Integrations</div>
       </div>
     </div>
 
     <!-- SUMMARY -->
     <div class="summary">
-      Systems designer who ships. Built and manages <strong>65 production workflows</strong> handling payments, notifications, and AI processing. <strong>Shipped a SaaS app from concept to Google Play in 6 weeks.</strong> Built a <strong>6-agent AI system</strong> for vendor due diligence and a <strong>RAG chatbot</strong> with vector search. Designs automated systems that handle real money for real businesses.
+      Applied AI Engineer applying AI, automation, and LLM tooling to build products, workflow systems, and agentic automations. Shipped <strong>ClipShip v1.0, a local AI video repurposing desktop app</strong>, and <strong>LastSend, a Google Play SaaS powered by n8n backend workflows.</strong> Designs practical systems that connect models, tools, APIs, payments, and real business operations.
     </div>
 
     <!-- PROJECTS -->
     <div class="section">
       <div class="section-title">What I've Built</div>
 
-      <!-- VENDORIQ -->
+      <!-- CLIPSHIP -->
       <div class="project-hero">
         <div class="project-header">
-          <div class="project-name">VendorIQ - Multi-Agent AI System <span class="hero-badge">Agentic AI</span></div>
-          <div class="project-date">Mar 2026</div>
+          <div class="project-name">ClipShip - Local AI Video Repurposing App <span class="hero-badge">Shipped</span></div>
+          <div class="project-date">Apr-May 2026</div>
         </div>
-        <div class="project-subtitle">Airia AI Agents Hackathon · 6 AI agents · Vendor due diligence pipeline with human approval</div>
+        <div class="project-subtitle">Public v1.0.0 Windows launch - local-first short clip generator for Reels, Shorts, and TikTok</div>
         <ul>
-          <li><strong>Orchestrator (Claude Sonnet)</strong> coordinates 5 sub-agents: document analysis, vendor research with web search, compliance check (10-point), risk scoring, and action agent (Slack + Airtable)</li>
-          <li><strong>Truly agentic</strong>: orchestrator decides agent routing based on contract content, human-in-the-loop approval before action</li>
-          <li>Deployed as <strong>Slack bot</strong>: DM a contract PDF, get complete analysis with one-click approve/reject</li>
+          <li>Shipped a desktop app that turns long talking-head videos into <strong>AI-selected vertical clips</strong> with local transcription, face-aware reframing, captions, ffmpeg rendering, and export</li>
+          <li>Built product infrastructure: <strong>Cloudflare Worker licensing API, D1, Dodo Payments, R2 updater/download delivery, GA4/GSC tracking, and Listmonk</strong></li>
+          <li>Privacy-first alternative to cloud clipping tools: video processing stays on the user's machine</li>
+        </ul>
+      </div>
+
+      <!-- LASTSEND -->
+      <div class="project-hero">
+        <div class="project-header">
+          <div class="project-name">LastSend - Posthumous Messaging SaaS <span class="hero-badge">Live</span></div>
+          <div class="project-date">Dec 2025-Present</div>
+        </div>
+        <div class="project-subtitle">Live on Google Play - first paying customer May 2026 - concept to launch in 6 weeks</div>
+        <ul>
+          <li>Architected <strong>backend workflow system in n8n</strong>: media processing, subscriptions, push notifications, trusted contact verification, escalation, deceased account cleanup</li>
+          <li><strong>Payment infrastructure</strong>: Google Play Billing with deferred cancel/downgrade, Dodo Payments for web subscriptions</li>
+          <li><strong>n8n Queue Mode</strong> on Hetzner VPS: PostgreSQL + Redis + Main + Worker containers, Caddy, Cloudflare R2, GitHub Actions CI/CD</li>
         </ul>
       </div>
 
@@ -568,38 +589,37 @@
         </div>
         <div class="project-subtitle">Swans Applied AI Hackathon · Built in 72 hours · AI intake pipeline for law firms</div>
         <ul>
-          <li>Police report PDFs processed by <strong>GPT-4o Vision</strong>, data extracted and presented to staff for review, then auto-pushed to practice management software</li>
-          <li>Designed <strong>24-node pipeline</strong>: PDF intake, AI extraction, human review, Clio API v4 integration, retainer generation, email delivery</li>
-          <li>Built React frontend with upload, editable review form, and live processing status</li>
+          <li>Police report PDFs processed by <strong>GPT-4o Vision</strong>, reviewed by staff, then pushed to Clio</li>
+          <li>Designed <strong>24-node n8n pipeline</strong> with low-confidence review instead of hallucinating legal data</li>
         </ul>
       </div>
 
-      <!-- LASTSEND -->
+      <!-- VENDORIQ -->
       <div class="project-hero">
         <div class="project-header">
-          <div class="project-name">LastSend - Posthumous Messaging SaaS <span class="hero-badge">Shipped</span></div>
-          <div class="project-date">Dec 2025 - Present</div>
+          <div class="project-name">VendorIQ - Multi-Agent AI System <span class="hero-badge">Agentic AI</span></div>
+          <div class="project-date">Mar 2026</div>
         </div>
-        <div class="project-subtitle">Full app live on Google Play · 40+ n8n workflows powering the backend · Concept to launch in 6 weeks</div>
+        <div class="project-subtitle">Airia AI Agents Hackathon - 6 AI agents - vendor due diligence with human approval</div>
         <ul>
-          <li>Architected <strong>entire backend in n8n</strong>: media processing (ffmpeg/sharp), subscription management, push notifications, trusted contact verification, escalation, deceased account cleanup</li>
-          <li><strong>Payment infrastructure</strong>: Google Play Billing with deferred cancel/downgrade, Dodo Payments for web subscriptions</li>
-          <li><strong>n8n Queue Mode</strong> on Hetzner VPS: PostgreSQL + Redis + Main + Worker containers, Caddy, Cloudflare R2, GitHub Actions CI/CD</li>
+          <li><strong>Orchestrator</strong> coordinates 5 sub-agents: document analysis, vendor research, compliance check, risk scoring, and Slack + Airtable action agent</li>
+          <li><strong>Agentic routing</strong>: orchestrator decides which agents to call based on contract content, not a fixed pipeline</li>
+          <li>Reduced vendor due diligence process from 2-3 days to under 2 minutes in the demo workflow</li>
         </ul>
       </div>
 
-      <!-- CLIENT WORK -->
+      <!-- HIRE BOT -->
       <div class="project">
         <div class="project-header">
-          <div class="project-name">Client Automation Systems</div>
-          <div class="project-date">2025</div>
+          <div class="project-name">Hire Rohan Bot - RAG Chatbot</div>
+          <div class="project-date">Mar 2026</div>
         </div>
-        <div class="project-subtitle">Production systems for businesses across USA, Canada, Germany, India</div>
+        <div class="project-subtitle">Live at hire.rohanbuilds.com · Supabase pgvector + Gemini Flash · 5 n8n workflows</div>
         <ul>
-          <li><strong>Restaurant Waitlist</strong> (Canada) - QR to Airtable to Twilio SMS. State machine, two-way messaging, staff reply interface</li>
-          <li><strong>AI Sales Agent</strong> - n8n + Gemini API for auto dealership. Inbound qualification, human handoff</li>
+          <li>Recruiters interview the bot about my background; RAG pipeline uses Gemini embeddings, Supabase pgvector, semantic search, and conversation memory</li>
         </ul>
       </div>
+
     </div>
 
     <!-- EXPERIENCE -->
@@ -608,22 +628,22 @@
 
       <div class="experience-item">
         <div class="exp-header">
-          <div class="exp-role">Automation Specialist & Product Builder</div>
+          <div class="exp-role">Applied AI Engineer & Product Builder</div>
           <div class="exp-date">2025 - Present</div>
         </div>
         <div class="exp-company">Freelance · Remote · Clients in USA, Canada, Germany, India</div>
         <ul>
-          <li>Design and operate production automation workflows on self-hosted infrastructure serving live paying users</li>
+          <li>Design and operate production automation workflows, LLM pipelines, and applied AI tools on self-hosted infrastructure</li>
           <li>End-to-end project ownership: requirements gathering, solution design, build, deploy, maintain</li>
         </ul>
       </div>
 
       <div class="experience-item">
         <div class="exp-header">
-          <div class="exp-role">Motion Designer (led to career pivot)</div>
-          <div class="exp-date">2023 - 2025</div>
+          <div class="exp-role">Content Producer</div>
+          <div class="exp-date">2021 - 2024</div>
         </div>
-        <div class="exp-company">Freelance · Wall Street Oasis (USA), iVenture Group (Germany), Quartic AI, Ripik AI</div>
+        <div class="exp-company">Freelance · Remote (Clients: USA, Germany, India)</div>
       </div>
     </div>
 

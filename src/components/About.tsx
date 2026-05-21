@@ -11,9 +11,9 @@ const journey: JourneyItem[] = [
   { year: '2023', label: 'Full Stack Open + The Odin Project' },
   { year: '2024', label: 'Discovered n8n, built first automation workflows' },
   { year: '2025', label: 'Built ', link: { text: 'LastSend', href: 'https://lastsend.app' } },
-  { year: '2025', label: 'Orbit client portal, restaurant automation, dealership bot' },
-  { year: '2026', label: 'Swans Hackathon (Top 25), Airia Hackathon, multi-agent AI systems' },
-  { year: 'Now', label: 'Building AI systems and shipping products' },
+  { year: '2025', label: 'Restaurant automation, client portals, workflow infrastructure' },
+  { year: '2026', label: 'Swans Hackathon (Top 25), Airia Hackathon, multi-agent workflows' },
+  { year: 'Now', label: 'Shipped ClipShip v1.0 and moving deeper into applied AI product work' },
 ];
 
 export default function About() {
@@ -42,25 +42,26 @@ export default function About() {
               className="text-3xl md:text-5xl font-bold mb-10 tracking-tight leading-tight"
               style={{ fontFamily: "'Space Grotesk', sans-serif", color: '#fafafa' }}
             >
-              Not a developer<span style={{ color: '#818cf8' }}>.</span>
+              Applied AI for the messy middle<span style={{ color: '#818cf8' }}>.</span>
               <br />
-              A builder<span style={{ color: '#818cf8' }}>.</span>
+              Where tools meet business logic<span style={{ color: '#818cf8' }}>.</span>
             </h2>
 
             <div className="space-y-6 text-base leading-relaxed" style={{ color: '#a1a1aa' }}>
               <p>
-                I don't write code line by line. I architect systems, design business logic,
-                and build the automation infrastructure that replaces manual work. I think in
-                workflows, data flows, and edge cases.
+                I am not a traditional software engineer. I am an applied AI product builder:
+                I map the system, define the business logic, build n8n workflows directly,
+                and drive implementation until the product works.
               </p>
               <p>
-                I think about the end user first, not the tech stack.
-                I manage complex projects under pressure and deliver on deadline.
+                My strongest hands-on skill is n8n. Around that, I design LLM pipelines,
+                API integrations, payment flows, media processing jobs, and agentic workflows
+                that survive real edge cases.
               </p>
               <p>
-                When I build something, it runs in production. Real payments, real users,
-                real data. Google Play Billing, Razorpay, Twilio, Gemini, Supabase. Not tutorials,
-                but systems people actually depend on.
+                Recent proof: ClipShip v1.0, LastSend on Google Play, VendorIQ's 6-agent
+                due-diligence workflow, and CaseDrop's legal intake pipeline. Some are
+                AI-native, some are automation-heavy, all are practical shipped systems.
               </p>
             </div>
           </motion.div>

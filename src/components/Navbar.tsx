@@ -73,23 +73,21 @@ export default function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed top-0 left-0 right-0 z-50"
-      style={{ padding: scrolled ? '12px 0' : '20px 0' }}
+      className="fixed top-3 left-0 right-0 z-50 px-4"
     >
       <div
-        className="mx-auto max-w-4xl px-8 md:px-12 flex items-center justify-between transition-all duration-300"
-        style={scrolled ? {
-          backgroundColor: 'rgba(9,9,11,0.5)',
+        className="mx-auto max-w-4xl flex items-center justify-between rounded-2xl border px-6 py-3 transition-[background-color,border-color,box-shadow] duration-500 ease-out md:px-8"
+        style={{
+          backgroundColor: scrolled ? 'rgba(9,9,11,0.72)' : 'rgba(9,9,11,0.18)',
           backdropFilter: 'blur(16px)',
           WebkitBackdropFilter: 'blur(16px)',
-          border: '1px solid rgba(39,39,42,0.6)',
-          borderRadius: '16px',
-          padding: '12px 24px',
-        } : {}}
+          borderColor: scrolled ? 'rgba(63,63,70,0.72)' : 'rgba(63,63,70,0)',
+          boxShadow: scrolled ? '0 16px 40px rgba(0,0,0,0.18)' : 'none',
+        }}
       >
         <Link
           to="/"
-          className="text-xl font-bold tracking-tight"
+          className="text-xl font-bold"
           style={{ fontFamily: "'Space Grotesk', system-ui, sans-serif", color: '#fafafa' }}
         >
           rohan<span style={{ color: '#818cf8' }}>.</span>

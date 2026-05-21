@@ -1,7 +1,10 @@
 import { useState, FormEvent } from 'react';
 import { motion } from 'framer-motion';
+import Turnstile from 'react-turnstile';
 import { useInView } from './useInView';
 import { Linkedin, Github, Twitter, Send, Check } from 'lucide-react';
+
+const TURNSTILE_SITE_KEY = import.meta.env.VITE_TURNSTILE_SITE_KEY || '1x00000000000000000000AA';
 
 const WEBHOOK_URL = 'https://auto.brandjetmedia.com/webhook/website/form-submission';
 
@@ -14,10 +17,16 @@ const socials = [
 export default function Contact() {
   const [ref, isInView] = useInView(0.1);
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus('sending');
+
+    if (!turnstileToken) {
+      setStatus('error');
+      return;
+    }
 
     const form = e.currentTarget;
     const data = {
@@ -27,6 +36,7 @@ export default function Contact() {
       message: (form.elements.namedItem('message') as HTMLTextAreaElement).value,
       submittedAt: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
       source: 'rohanbuilds-contact-form',
+      'cf-turnstile-response': turnstileToken,
     };
 
     try {
@@ -70,7 +80,7 @@ export default function Contact() {
           className="text-3xl md:text-5xl font-bold mb-6 tracking-tight"
           style={{ fontFamily: "'Space Grotesk', sans-serif", color: '#fafafa' }}
         >
-          Let's work together<span style={{ color: '#818cf8' }}>.</span>
+          Build something practical<span style={{ color: '#818cf8' }}>.</span>
         </motion.h2>
 
         <motion.p
@@ -80,8 +90,9 @@ export default function Contact() {
           className="max-w-lg mb-12 text-base"
           style={{ color: '#a1a1aa' }}
         >
-          Looking for someone to automate your business processes or build your
-          next product? I'm available for full-time roles and consulting projects.
+          Looking for applied AI automation, n8n workflow architecture, or a
+          product builder who can turn messy operations into working systems?
+          Send the context.
         </motion.p>
 
         <div className="grid md:grid-cols-5 gap-12 md:gap-16">
@@ -122,16 +133,22 @@ export default function Contact() {
             />
             <textarea
               name="message"
-              placeholder="What would you like to automate?"
+              placeholder="What are you trying to build or automate?"
               required
               minLength={10}
               rows={4}
               className="w-full px-4 py-3 text-sm placeholder:text-zinc-600 focus:border-indigo-400/50 transition-colors resize-none"
               style={inputStyle}
             />
+            <Turnstile
+              sitekey={TURNSTILE_SITE_KEY}
+              theme="dark"
+              onVerify={(token) => setTurnstileToken(token)}
+              onExpire={() => setTurnstileToken(null)}
+            />
             <button
               type="submit"
-              disabled={status === 'sending' || status === 'sent'}
+              disabled={status === 'sending' || status === 'sent' || !turnstileToken}
               className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-7 py-3 text-sm font-semibold rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/20 disabled:opacity-50"
               style={{
                 backgroundColor: status === 'sent' ? '#059669' : '#818cf8',

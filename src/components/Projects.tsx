@@ -14,14 +14,42 @@ interface Project {
   videoId?: string;
   images?: string[];
   badge?: string;
+  visual?: 'wide' | 'phone';
 }
 
 const projects: Project[] = [
   {
+    title: 'ClipShip',
+    tagline: 'Local AI video repurposing app for creators',
+    description: 'Windows desktop app that turns long talking-head videos into AI-selected vertical clips for Reels, Shorts, and TikTok. The pipeline runs locally: transcription, clip selection, face-aware reframing, captions, rendering, licensing, payments, updater, and download tracking.',
+    tech: ['Tauri', 'React', 'Rust', 'ffmpeg', 'Cloudflare', 'Dodo Payments'],
+    metrics: ['Public v1.0', 'Local processing', 'No cloud upload'],
+    featured: true,
+    link: 'https://clipship.co',
+    images: ['/projects/clipship/process-complete.png'],
+    badge: 'Flagship',
+  },
+  {
+    title: 'LastSend',
+    tagline: 'Full production app, concept to Google Play in 6 weeks',
+    description: 'Entire backend runs on n8n. 40+ workflows handle payment processing, media uploads to Cloudflare R2, push notifications, trusted contact verification, deceased account processing, and delivery triggers. Live on Google Play with first paying customer in May 2026.',
+    tech: ['n8n', 'React', 'Capacitor', 'Supabase', 'Docker', 'Hetzner'],
+    metrics: ['40+ workflows', 'First paying user', 'Live on Google Play'],
+    featured: true,
+    link: 'https://lastsend.app',
+    images: [
+      '/projects/lastsend/android-1.png',
+      '/projects/lastsend/android-2.png',
+      '/projects/lastsend/android-3.png',
+    ],
+    badge: 'Flagship',
+    visual: 'phone',
+  },
+  {
     title: 'VendorIQ',
     tagline: '6-agent AI system for vendor due diligence',
-    description: 'Upload a vendor contract to Slack, and 6 AI agents analyze it automatically. The orchestrator (Claude Sonnet) coordinates document analysis, vendor research with web search, compliance checking, risk scoring, and action agents. Human approves or rejects, then decisions post to Slack and log to Airtable. Built for the Airia AI Agents Hackathon.',
-    tech: ['Airia', 'Claude Sonnet', 'Claude Haiku', 'Slack', 'Airtable'],
+    description: 'Upload a vendor contract to Slack, and 6 AI agents analyze it automatically. The orchestrator coordinates document analysis, vendor research, compliance checking, risk scoring, and action agents. Human approves or rejects, then decisions post to Slack and log to Airtable.',
+    tech: ['Airia', 'LLM orchestration', 'Slack', 'Airtable'],
     metrics: ['6 AI agents', 'Human-in-the-loop', 'Truly agentic'],
     featured: true,
     images: [
@@ -33,27 +61,19 @@ const projects: Project[] = [
   {
     title: 'CaseDrop',
     tagline: 'AI-powered case intake for personal injury law firms',
-    description: 'Upload a police report, AI extracts all case data (GPT-4o Vision), human reviews and approves, system creates the case in Clio Manage, generates a retainer agreement, and sends it for signature. Built the working prototype in 72 hours during the Swans Applied AI Hackathon.',
+    description: 'Upload a police report, AI extracts all case data, human reviews and approves, the system creates the case in Clio Manage, generates a retainer agreement, and sends it for signature. Built the working prototype in 72 hours during the Swans Applied AI Hackathon.',
     tech: ['n8n', 'OpenAI GPT-4o', 'Clio API', 'Supabase', 'React'],
     metrics: ['24-node pipeline', 'AI extraction', 'Built in 72 hours'],
     featured: true,
     badge: 'Top 25 - Swans Hackathon',
   },
   {
-    title: 'LastSend',
-    tagline: 'Full production app, concept to Google Play in 6 weeks',
-    description: 'Entire backend runs on n8n. 40+ workflows handle payment processing (Google Play Billing, Dodo Payments), media uploads to Cloudflare R2, push notifications via Firebase FCM, check-in verification, deceased account processing, and message delivery triggers. Live on Google Play.',
-    tech: ['n8n', 'React', 'Capacitor', 'Supabase', 'Docker', 'Hetzner'],
-    metrics: ['40+ workflows', 'Queue mode', 'Live on Google Play'],
-    featured: true,
-    link: 'https://lastsend.app',
-  },
-  {
-    title: 'Orbit',
-    tagline: 'Self-service client portal',
-    description: 'Client-facing portal with subscription management, wallet-based billing, Razorpay payments (UPI, card, netbanking), and a full admin panel. Multi-currency support, client invite flow, password reset. Built and deployed in 2 days.',
-    tech: ['n8n', 'React', 'Supabase', 'Razorpay', 'Hetzner'],
-    metrics: ['Built in 2 days', 'Multi-currency', 'Wallet system'],
+    title: 'Hire Rohan Bot',
+    tagline: 'RAG chatbot that answers questions about my work',
+    description: 'Recruiters and clients can interview the bot about my background, projects, and capabilities. n8n workflows handle chat, conversation history, chunk management, cleanup, and retrieval through Supabase pgvector.',
+    tech: ['n8n', 'Supabase pgvector', 'Gemini', 'RAG'],
+    metrics: ['Live chatbot', 'Vector search', '5 workflows'],
+    link: 'https://hire.rohanbuilds.com',
   },
   {
     title: 'Turquaz Restaurant',
@@ -102,6 +122,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   const [ref, isInView] = useInView(0.1);
   const [showVideo, setShowVideo] = useState(false);
   const [activeImage, setActiveImage] = useState(0);
+  const isPhoneVisual = project.visual === 'phone';
 
   const cardContent = (
     <>
@@ -121,13 +142,14 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             <span
               className="inline-flex items-center gap-1.5 text-[10px] font-bold tracking-wider uppercase px-3 py-1 rounded-full"
               style={{
-                color: '#fbbf24',
-                backgroundColor: 'rgba(251,191,36,0.1)',
-                border: '1px solid rgba(251,191,36,0.3)',
+                color: '#c4b5fd',
+                backgroundColor: 'rgba(129,140,248,0.12)',
+                border: '1px solid rgba(129,140,248,0.35)',
+                boxShadow: '0 0 18px rgba(129,140,248,0.12)',
                 fontFamily: "'JetBrains Mono', monospace",
               }}
             >
-              ★ {project.badge}
+              {project.badge}
             </span>
           )}
         </div>
@@ -137,17 +159,42 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       {/* Image gallery */}
       {project.images && project.images.length > 0 && (
         <div className="mb-5">
-          <div className="rounded-lg overflow-hidden border cursor-pointer" style={{ borderColor: '#27272a' }}
+          <div
+            className={`rounded-lg overflow-hidden border cursor-pointer flex items-center justify-center ${isPhoneVisual ? 'h-[420px] sm:h-[460px]' : 'aspect-video'}`}
+            style={{
+              borderColor: '#27272a',
+              background: isPhoneVisual
+                ? 'linear-gradient(135deg, #09090b 0%, #18181b 55%, #0f172a 100%)'
+                : 'radial-gradient(circle at center, rgba(129,140,248,0.12), rgba(9,9,11,0.98) 62%)',
+            }}
             onClick={e => { e.preventDefault(); e.stopPropagation(); setActiveImage((activeImage + 1) % project.images!.length); }}
           >
-            <img
-              src={project.images[activeImage]}
-              alt={`${project.title} screenshot ${activeImage + 1}`}
-              className="w-full"
-              style={{ objectFit: 'contain', backgroundColor: '#09090b' }}
-            />
+            {isPhoneVisual ? (
+              <div className="flex h-full w-full items-center justify-center gap-3 sm:gap-5 p-4 sm:p-6">
+                {project.images.slice(0, 3).map((img, i) => (
+                  <img
+                    key={img}
+                    src={img}
+                    alt={`${project.title} screenshot ${i + 1}`}
+                    className="h-full w-auto max-w-[31%] rounded-md border"
+                    style={{
+                      objectFit: 'contain',
+                      borderColor: i === activeImage ? 'rgba(129,140,248,0.6)' : 'rgba(63,63,70,0.7)',
+                    }}
+                    onClick={e => { e.preventDefault(); e.stopPropagation(); setActiveImage(i); }}
+                  />
+                ))}
+              </div>
+            ) : (
+              <img
+                src={project.images[activeImage]}
+                alt={`${project.title} screenshot ${activeImage + 1}`}
+                className="w-full h-full"
+                style={{ objectFit: 'contain' }}
+              />
+            )}
           </div>
-          {project.images.length > 1 && (
+          {project.images.length > 1 && !isPhoneVisual && (
             <div className="flex items-center gap-2 mt-3">
               {project.images.map((img, i) => (
                 <button
@@ -278,7 +325,7 @@ export default function Projects() {
           className="text-3xl md:text-5xl font-bold mb-16 tracking-tight"
           style={{ fontFamily: "'Space Grotesk', sans-serif", color: '#fafafa' }}
         >
-          Things I've built<span style={{ color: '#818cf8' }}>.</span>
+          Products and systems I've shipped<span style={{ color: '#818cf8' }}>.</span>
         </motion.h2>
 
         <div className="grid md:grid-cols-2 gap-5">

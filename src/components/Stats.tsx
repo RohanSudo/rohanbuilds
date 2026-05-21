@@ -2,13 +2,13 @@ import { motion } from 'framer-motion';
 import { useInView } from './useInView';
 
 const stats = [
-  { number: '65', label: 'Production Workflows', description: 'n8n automations running 24/7', highlight: false },
-  { number: '12+', label: 'API Integrations', description: 'Google Play, Dodo, Twilio, Gemini, Claude & more', highlight: false },
-  { number: '3', label: 'Products Shipped', description: 'LastSend, VendorIQ, CaseDrop', highlight: true },
-  { number: '3+', label: 'Client Projects', description: 'Restaurants, dealerships, portals', highlight: false },
+  { number: '65+', label: 'Production Workflows', description: 'n8n automations running 24/7', highlight: false },
+  { number: '15+', label: 'API Integrations', description: 'Google Play, Dodo, Twilio, OpenAI, Gemini & more', highlight: false },
+  { number: '4', label: 'Products & Systems', description: 'ClipShip, LastSend, VendorIQ, CaseDrop', highlight: true },
+  { number: '2', label: 'Live Products', description: 'ClipShip and LastSend in public release', highlight: false },
 ];
 
-const tools = ['n8n', 'Supabase', 'React', 'Claude', 'Gemini', 'Docker', 'Cloudflare', 'GitHub Actions', 'Airtable', 'Slack API'];
+const tools = ['n8n', 'Supabase', 'React', 'Tauri', 'OpenAI', 'Gemini', 'Docker', 'Cloudflare', 'GitHub Actions', 'Airtable', 'Slack API'];
 
 export default function Stats() {
   const [ref, isInView] = useInView(0.1);
