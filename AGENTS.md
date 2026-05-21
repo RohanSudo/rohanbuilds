@@ -32,8 +32,8 @@ Rohan's portfolio site. Treat this as the source of truth for portfolio position
 - Run `npm run build` before pushing.
 - Start or reuse the local dev server and open the preview in the browser before asking Rohan to approve.
 - This site is hosted on Cloudflare Pages project `rohanbuilds`.
-- As of 2026-05-21, GitHub push did NOT trigger Cloudflare Pages after the repo moved to `RohanSudo/rohanbuilds`. Do not assume push = production deploy.
-- Production deploy command:
-  - `npm run build`
-  - `wrangler pages deploy dist --project-name rohanbuilds --branch main --commit-hash <current-full-git-sha> --commit-message "<commit message>"`
-- Verify production by checking `https://rohanbuilds.com/` returns the new title/assets, not just by trusting the push.
+- GitHub auto-deploy was fixed on 2026-05-21 after Rohan corrected the Cloudflare Workers & Pages GitHub App repository access for `RohanSudo/rohanbuilds`.
+- Verification commit: `6d38c51 Test Cloudflare git deployment`.
+- Cloudflare Pages deployment: `6ba59fda`, active production, `https://6ba59fda.rohanbuilds.pages.dev`.
+- Normal deploy flow now: `npm run build`, commit, push to `main`, confirm Cloudflare creates an active deployment for the pushed commit, then verify `https://rohanbuilds.com/` returns the new content/assets.
+- Fallback only if Git auto-deploy breaks again: `wrangler pages deploy dist --project-name rohanbuilds --branch main --commit-hash <current-full-git-sha> --commit-message "<commit message>"`.
