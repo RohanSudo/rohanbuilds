@@ -4,7 +4,8 @@ import Turnstile from 'react-turnstile';
 import { useInView } from './useInView';
 import { Linkedin, Github, Twitter, Send, Check } from 'lucide-react';
 
-const TURNSTILE_SITE_KEY = import.meta.env.VITE_TURNSTILE_SITE_KEY || '1x00000000000000000000AA';
+const IS_DEV = import.meta.env.DEV;
+const TURNSTILE_SITE_KEY = import.meta.env.VITE_TURNSTILE_SITE_KEY || '0x4AAAAAACxdVGVhQ4L3BHjc';
 
 const WEBHOOK_URL = 'https://auto.brandjetmedia.com/webhook/website/form-submission';
 
@@ -23,7 +24,7 @@ export default function Contact() {
     e.preventDefault();
     setStatus('sending');
 
-    if (!turnstileToken) {
+    if (!IS_DEV && !turnstileToken) {
       setStatus('error');
       return;
     }
@@ -140,15 +141,17 @@ export default function Contact() {
               className="w-full px-4 py-3 text-sm placeholder:text-zinc-600 focus:border-indigo-400/50 transition-colors resize-none"
               style={inputStyle}
             />
-            <Turnstile
-              sitekey={TURNSTILE_SITE_KEY}
-              theme="dark"
-              onVerify={(token) => setTurnstileToken(token)}
-              onExpire={() => setTurnstileToken(null)}
-            />
+            {!IS_DEV && (
+              <Turnstile
+                sitekey={TURNSTILE_SITE_KEY}
+                theme="dark"
+                onVerify={(token) => setTurnstileToken(token)}
+                onExpire={() => setTurnstileToken(null)}
+              />
+            )}
             <button
               type="submit"
-              disabled={status === 'sending' || status === 'sent' || !turnstileToken}
+              disabled={status === 'sending' || status === 'sent' || (!IS_DEV && !turnstileToken)}
               className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-7 py-3 text-sm font-semibold rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/20 disabled:opacity-50"
               style={{
                 backgroundColor: status === 'sent' ? '#059669' : '#818cf8',

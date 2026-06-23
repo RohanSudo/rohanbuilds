@@ -3,12 +3,12 @@ import { useInView } from './useInView';
 
 const stats = [
   { number: '65+', label: 'Production Workflows', description: 'n8n automations running 24/7', highlight: false },
-  { number: '15+', label: 'API Integrations', description: 'Google Play, Dodo, Twilio, OpenAI, Gemini & more', highlight: false },
-  { number: '4', label: 'Products & Systems', description: 'ClipShip, LastSend, VendorIQ, CaseDrop', highlight: true },
-  { number: '2', label: 'Live Products', description: 'ClipShip and LastSend in public release', highlight: false },
+  { number: '20+', label: 'API Integrations', description: 'payments, media, device APIs, LLMs, ops tools', highlight: false },
+  { number: '8', label: 'Products & Systems', description: 'public apps, client builds, confidential ops stacks', highlight: true },
+  { number: '3', label: 'Live Deployments', description: 'public products plus private client production', highlight: false },
 ];
 
-const tools = ['n8n', 'Supabase', 'React', 'Tauri', 'OpenAI', 'Gemini', 'Docker', 'Cloudflare', 'GitHub Actions', 'Airtable', 'Slack API'];
+const tools = ['n8n', 'Supabase', 'React', 'Tauri', 'OpenAI', 'Gemini', 'Docker', 'Cloudflare', 'ClickUp', 'Apps Script', 'ESP32', 'Airtable', 'Slack API'];
 
 export default function Stats() {
   const [ref, isInView] = useInView(0.1);

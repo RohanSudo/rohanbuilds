@@ -13,7 +13,7 @@ const journey: JourneyItem[] = [
   { year: '2025', label: 'Built ', link: { text: 'LastSend', href: 'https://lastsend.app' } },
   { year: '2025', label: 'Restaurant automation, client portals, workflow infrastructure' },
   { year: '2026', label: 'Swans Hackathon (Top 25), Airia Hackathon, multi-agent workflows' },
-  { year: 'Now', label: 'Shipped ClipShip v1.0 and moving deeper into applied AI product work' },
+  { year: 'Now', label: 'Shipped ClipShip v1.0, active Slow Dials client build, and deeper operations automation work' },
 ];
 
 export default function About() {
@@ -60,8 +60,9 @@ export default function About() {
               </p>
               <p>
                 Recent proof: ClipShip v1.0, LastSend on Google Play, VendorIQ's 6-agent
-                due-diligence workflow, and CaseDrop's legal intake pipeline. Some are
-                AI-native, some are automation-heavy, all are practical shipped systems.
+                due-diligence workflow, Slow Dials' device/dashboard system, and confidential
+                operations automation work. Some are AI-native, some are automation-heavy,
+                all are practical shipped systems.
               </p>
             </div>
           </motion.div>

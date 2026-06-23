@@ -61,8 +61,9 @@ export default function Hero() {
           style={{ color: '#a1a1aa' }}
         >
           I use AI, n8n, and LLM tooling to design products, automations,
-          and workflows like ClipShip and LastSend. Practical systems that
-          handle payments, media, APIs, and real users.
+          and client systems like ClipShip, LastSend, and Slow Dials.
+          Practical systems that handle payments, media, devices, APIs,
+          and real users.
         </motion.p>
 
         {/* Buttons */}
