@@ -14,6 +14,11 @@ interface Project {
   videoId?: string;
   images?: string[];
   badge?: string;
+  badgeImage?: {
+    src: string;
+    alt: string;
+    href?: string;
+  };
   visual?: 'wide' | 'phone' | 'clickup';
   proofPoints?: string[];
   privacyNote?: string;
@@ -22,17 +27,6 @@ interface Project {
 }
 
 const projects: Project[] = [
-  {
-    title: 'ClipShip',
-    tagline: 'Local AI video repurposing app for creators',
-    description: 'Windows desktop app that turns long talking-head videos into AI-selected vertical clips for Reels, Shorts, and TikTok. The pipeline runs locally: transcription, clip selection, face-aware reframing, captions, rendering, licensing, payments, updater, and download tracking.',
-    tech: ['Tauri', 'React', 'Rust', 'ffmpeg', 'Cloudflare', 'Dodo Payments'],
-    metrics: ['Public v1.0', 'Local processing', 'No cloud upload'],
-    featured: true,
-    link: 'https://clipship.co',
-    images: ['/projects/clipship/process-complete.png'],
-    badge: 'Flagship',
-  },
   {
     title: 'LastSend',
     tagline: 'Full production app, concept to Google Play in 6 weeks',
@@ -46,8 +40,23 @@ const projects: Project[] = [
       '/projects/lastsend/android-2.png',
       '/projects/lastsend/android-3.png',
     ],
-    badge: 'Flagship',
+    badgeImage: {
+      src: '/projects/lastsend/uneed-daily-winner.png',
+      alt: 'Uneed Daily Winner, 1st place',
+      href: 'https://www.uneed.best/tool/lastsend',
+    },
     visual: 'phone',
+  },
+  {
+    title: 'ClipShip',
+    tagline: 'Local AI video repurposing app for creators',
+    description: 'Windows desktop app that turns long talking-head videos into AI-selected vertical clips for Reels, Shorts, and TikTok. The pipeline runs locally: transcription, clip selection, face-aware reframing, captions, rendering, licensing, payments, updater, and download tracking.',
+    tech: ['Tauri', 'React', 'Rust', 'ffmpeg', 'Cloudflare', 'Dodo Payments'],
+    metrics: ['Public v1.0', 'Local processing', 'No cloud upload'],
+    featured: true,
+    link: 'https://clipship.co',
+    images: ['/projects/clipship/process-complete.png'],
+    badge: 'Flagship',
   },
   {
     title: 'Slow Dials',
@@ -256,6 +265,18 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   const [activeImage, setActiveImage] = useState(0);
   const isPhoneVisual = project.visual === 'phone';
   const isClickUpVisual = project.visual === 'clickup';
+  const hasIndependentBadgeLink = Boolean(project.link && project.badgeImage?.href);
+
+  const badgeArtwork = project.badgeImage ? (
+    <img
+      src={project.badgeImage.src}
+      width={639}
+      height={171}
+      alt={project.badgeImage.alt}
+      className="h-auto w-[136px] shrink-0 sm:w-[148px]"
+      decoding="async"
+    />
+  ) : null;
 
   const cardContent = (
     <>
@@ -285,6 +306,17 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               {project.badge}
             </span>
           )}
+          {badgeArtwork && project.badgeImage?.href ? (
+            <a
+              href={project.badgeImage.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View LastSend on Uneed"
+              className="pointer-events-auto relative z-20 inline-flex rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#818cf8] focus-visible:ring-offset-2 focus-visible:ring-offset-[#18181b]"
+            >
+              {badgeArtwork}
+            </a>
+          ) : badgeArtwork}
         </div>
         <p className="text-sm" style={{ color: '#71717a' }}>{project.tagline}</p>
       </div>
@@ -295,7 +327,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       {!isClickUpVisual && project.images && project.images.length > 0 && (
         <div className="mb-5">
           <div
-            className={`rounded-lg overflow-hidden border cursor-pointer flex items-center justify-center ${isPhoneVisual ? 'h-[420px] sm:h-[460px]' : 'aspect-video'}`}
+            className={`rounded-lg overflow-hidden border cursor-pointer flex items-center justify-center ${isPhoneVisual ? 'h-[420px] sm:h-[460px]' : 'aspect-video'} ${hasIndependentBadgeLink ? 'pointer-events-auto' : ''}`}
             style={{
               borderColor: '#27272a',
               background: isPhoneVisual
@@ -336,7 +368,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                   key={i}
                   onClick={e => { e.preventDefault(); e.stopPropagation(); setActiveImage(i); }}
                   aria-label={`Show ${project.title} screenshot ${i + 1}`}
-                  className="rounded overflow-hidden border-2 transition-all"
+                  className={`rounded overflow-hidden border-2 transition-all ${hasIndependentBadgeLink ? 'pointer-events-auto' : ''}`}
                   style={{
                     borderColor: i === activeImage ? '#818cf8' : '#27272a',
                     opacity: i === activeImage ? 1 : 0.5,
@@ -382,7 +414,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       {project.videoId && (
         <button
           onClick={e => { e.preventDefault(); e.stopPropagation(); setShowVideo(true); }}
-          className="inline-flex items-center gap-2 text-xs font-medium px-4 py-2 rounded-lg mb-5 transition-all duration-200"
+          className={`inline-flex items-center gap-2 text-xs font-medium px-4 py-2 rounded-lg mb-5 transition-all duration-200 ${hasIndependentBadgeLink ? 'pointer-events-auto' : ''}`}
           style={{
             color: '#818cf8',
             backgroundColor: 'rgba(129,140,248,0.1)',
@@ -430,7 +462,27 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       {showVideo && project.videoId && (
         <VideoModal videoId={project.videoId} onClose={() => setShowVideo(false)} />
       )}
-      {project.link ? (
+      {project.link && hasIndependentBadgeLink ? (
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: index * 0.1, duration: 0.5 }}
+          className={`card relative cursor-pointer p-6 sm:p-8 flex flex-col ${project.featured ? 'md:col-span-2 featured-card' : ''}`}
+          style={featuredStyle}
+        >
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Open ${project.title} website`}
+            className="absolute inset-0 z-0 rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#818cf8] focus-visible:ring-offset-2 focus-visible:ring-offset-[#09090b]"
+          />
+          <div className="pointer-events-none relative z-10 flex h-full flex-col">
+            {cardContent}
+          </div>
+        </motion.div>
+      ) : project.link ? (
         <motion.a
           ref={ref}
           href={project.link}
