@@ -29,10 +29,10 @@ interface Project {
 const projects: Project[] = [
   {
     title: 'LastSend',
-    tagline: 'Full production app, concept to Google Play in 6 weeks',
-    description: 'Entire backend runs on n8n. 40+ workflows handle payment processing, media uploads to Cloudflare R2, push notifications, trusted contact verification, deceased account processing, and delivery triggers. Live on Google Play with first paying customer in May 2026.',
+    tagline: 'Digital legacy app built from concept to production in 6 weeks',
+    description: 'Entire backend runs on n8n. 40+ workflows handle payment processing, media uploads to Cloudflare R2, push notifications, trusted contact verification, deceased account processing, and delivery triggers. Reached its first paying customer in May 2026.',
     tech: ['n8n', 'React', 'Capacitor', 'Supabase', 'Docker', 'Hetzner'],
-    metrics: ['40+ workflows', 'First paying user', 'Live on Google Play'],
+    metrics: ['40+ workflows', 'First paying user', 'Production backend'],
     featured: true,
     link: 'https://lastsend.app',
     images: [

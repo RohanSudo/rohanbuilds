@@ -59,10 +59,10 @@ export default function About() {
                 that survive real edge cases.
               </p>
               <p>
-                Recent proof: ClipShip v1.0, LastSend on Google Play, VendorIQ's 6-agent
-                due-diligence workflow, Slow Dials' device/dashboard system, and confidential
-                operations automation work. Some are AI-native, some are automation-heavy,
-                all are practical shipped systems.
+                Recent proof: ClipShip v1.0, LastSend's 40+ workflow backend, VendorIQ's
+                6-agent due-diligence workflow, Slow Dials' device/dashboard system, and
+                confidential operations automation work. Some are AI-native, some are
+                automation-heavy, all are practical shipped systems.
               </p>
             </div>
           </motion.div>
